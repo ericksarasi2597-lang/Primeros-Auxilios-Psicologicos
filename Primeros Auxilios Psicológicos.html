@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Primeros Auxilios Psicológicos · ABCDE</title>
+
+<style>
+:root{
+    --bg:#F4F7FB;
+    --surface:#FFFFFF;
+    --surface2:#EEF5F9;
+
+    --blue:#00669E;
+    --turquoise:#07C8CC;
+
+    --green:#2E8B57;
+    --yellow:#B7791F;
+    --red:#C53030;
+    --pink:#D946EF;
+
+    --text:#1F2937;
+    --muted:#64748B;
+    --border:#D8E1E8;
+
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Segoe UI,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    overflow-x: hidden;
+}
+
+.container{
+    max-width:980px;
+    margin:auto;
+    padding:28px 18px 50px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        #FFFFFF 0%,
+        #EAF7FA 100%
+    );
+
+    border:1px solid var(--border);
+    border-radius:24px;
+
+    padding:32px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:18px;
+}
+
+.kicker{
+    color:var(--blue);
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:.8rem;
+}
+
+h1{
+    font-size:clamp(2rem,5vw,3.2rem);
+    line-height:1.05;
+
+    margin:8px 0 12px;
+
+    color:#12344A;
+}
+
+.hero p{
+    max-width:760px;
+    color:#475569;
+    font-size:1.05rem;
+}
+
+/* ALERTA */
+
+.notice{
+    background:#FFF8DF;
+
+    border:1px solid #EAD79A;
+
+    border-left:5px solid var(--yellow);
+
+    padding:15px 17px;
+
+    border-radius:14px;
+
+    color:#5B4A16;
+
+    margin-top:18px;
+}
+
+/* PROGRESO */
+
+.progress{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:7px;
+
+    margin:18px 0;
+}
+
+.bar{
+    height:8px;
+
+    border-radius:99px;
+
+    background:#DCE4EB;
+
+    transition:.25s;
+}
+
+.bar.active{
+    background:var(--blue);
+}
+
+.bar.done{
+    background:var(--green);
+}
+
+/* CARDS */
+
+.card{
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    margin:18px 0;
+
+    box-shadow:var(--shadow);
+
+    display: none;
+}
+
+.card.active-card{
+    display: block;
+}
+
+.step{
+    display:flex;
+
+    gap:18px;
+
+    align-items:flex-start;
+}
+
+.letter{
+    min-width:64px;
+    height:64px;
+
+    border-radius:18px;
+
+    background:#E5F5F8;
+
+    color:var(--blue);
+
+    display:grid;
+    place-items:center;
+
+    font-size:2rem;
+    font-weight:900;
+}
+
+h2{
+    margin:0;
+
+    color:#173F56;
+
+    font-size:1.65rem;
+}
+
+h3{
+    color:#173F56;
+
+    margin-top:22px;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:14px;
+
+    margin-top:18px;
+}
+
+.mini{
+    background:var(--surface2);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:17px;
+}
+
+.mini strong{
+    display:block;
+
+    color:#174B66;
+
+    margin-bottom:5px;
+}
+
+/* MENSAJES */
+
+.example{
+    background:#EDF8F5;
+
+    border:1px solid #BFE2D3;
+
+    border-radius:16px;
+
+    padding:17px;
+
+    margin:18px 0;
+}
+
+.avoid{
+    background:#FFF1F1;
+
+    border:1px solid #F1C4C4;
+
+    border-radius:16px;
+
+    padding:17px;
+    
+    margin-top: 18px; /* <-- SEPARACIÓN AÑADIDA AQUÍ */
+}
+
+/* BOTONES */
+
+button{
+    border:0;
+
+    border-radius:12px;
+
+    background:var(--blue);
+
+    color:white;
+
+    font-weight:800;
+
+    padding:12px 17px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-1px);
+
+    filter:brightness(1.05);
+}
+
+button.secondary{
+    background:#E7EEF3;
+
+    color:#17435A;
+}
+
+button.green{
+    background:var(--green);
+}
+
+.actions{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:15px;
+}
+
+.nav-actions{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+}
+
+/* OPCIONES */
+
+.choice{
+    display:block;
+
+    width:100%;
+
+    text-align:left;
+
+    background:#FFFFFF;
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    margin:9px 0;
+}
+
+.choice:hover{
+    border-color:var(--blue);
+
+    background:#F5FBFD;
+}
+
+.choice.correct{
+    background:#EDF8F1;
+
+    border-color:#8BC7A5;
+}
+
+.choice.wrong{
+    background:#FFF0F0;
+
+    border-color:#E6A1A1;
+}
+
+.feedback{
+    font-weight:600;
+
+    margin-top:12px;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+/* ESTILOS DE CASO GAMIFICADO */
+.case-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.case-avatar {
+    width: 45px;
+    height: 45px;
+    background: #E0F2FE;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+}
+
+.case-avatar.female {
+    background: #FCE7F3;
+}
+
+.case-content {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 12px;
+    flex-grow: 1;
+}
+
+.meta-pts {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* PASOS DEL QUIZ INTERACTIVO */
+.quiz-step {
+    display: none;
+}
+.quiz-step.active-quiz {
+    display: block;
+}
+
+/* RESPIRACIÓN */
+
+.breath-wrap{
+    text-align:center;
+
+    padding:18px;
+}
+
+.breath{
+    width:145px;
+    height:145px;
+
+    border-radius:50%;
+
+    margin:10px auto 18px;
+
+    background:#DFF4F7;
+
+    border:7px solid #75CDD5;
+
+    display:grid;
+    place-items:center;
+
+    color:#07506C;
+
+    font-weight:900;
+
+    box-shadow:
+        0 0 0 14px #EDF9FA;
+}
+
+.breath.animate{
+    animation:
+        breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe{
+
+    0%,100%{
+        transform:scale(.78);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+/* SCORE & GRÁFICO DE HABILIDADES */
+
+.score{
+    display:none;
+    background:#EDF8F1;
+    border:1px solid #B9DFC9;
+    border-radius:16px;
+    padding:24px;
+    margin-top:20px;
+    text-align: center;
+}
+
+.score.show{
+    display:block;
+}
+
+.results-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.radar-container {
+    flex: 1;
+    min-width: 260px;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.radar-container canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.recommendations-box {
+    flex: 1;
+    min-width: 260px;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #B9DFC9;
+}
+
+/* EFECTO DE SERPENTINAS / CONFETI */
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 20px;
+    background: #ff0;
+    top: -20px;
+    z-index: 9999;
+    opacity: 0.9;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:.85rem;
+
+    margin-top:25px;
+
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:650px){
+
+    .hero,
+    .card{
+        padding:20px;
+    }
+
+    .progress{
+        gap:4px;
+    }
+
+    .letter{
+        min-width:54px;
+        height:54px;
+    }
+
+    .step{
+        gap:12px;
+    }
+}
+</style>
+<!-- Incluir libreria Chart.js para el gráfico de radar -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="hero">
+
+    <div class="kicker">
+        Microlearning · 6 bloques
+    </div>
+
+    <h1>
+        🧠 Primeros Auxilios Psicológicos
+    </h1>
+
+    <p>
+        <strong>ABCDE</strong> · Aprende a aplicar acciones iniciales
+        de apoyo psicológico ante situaciones de crisis.
+    </p>
+
+    <div class="notice">
+
+        <strong>Importante:</strong>
+
+        ABCDE es una adaptación didáctica para recordar
+        acciones de apoyo. No es necesariamente la denominación
+        oficial de un protocolo OMS/OPS.
+
+        No sustituye la formación en PAP ni la evaluación profesional.
+
+        Ante peligro inmediato, emergencia médica o riesgo de
+        autolesión, prioriza la seguridad y activa los servicios
+        correspondientes.
+
+    </div>
+
+</header>
+
+
+<div class="progress" id="progress"></div>
+
+
+<!-- ========================= -->
+<!-- A -->
+<!-- ========================= -->
+
+<section class="card active-card" id="block-0">
+
+<div class="step">
+
+<div class="letter">
+A
+</div>
+
+<div>
+
+<h2>
+👂 Escucha activa
+</h2>
+
+<p>
+
+Como psicólogo, tu primera intervención no consiste
+en obtener toda la historia del evento.
+
+Consiste en establecer contacto, escuchar y comprender
+qué necesita la persona en ese momento.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="mini">
+
+<strong>👂 Escucha</strong>
+
+Permite que la persona se exprese sin presionarla.
+
+</div>
+
+
+<div class="mini">
+
+<strong>👀 Observa</strong>
+
+Presta atención a las señales verbales y no verbales.
+
+</div>
+
+
+<div class="mini">
+
+<strong>🤝 Acompaña</strong>
+
+Mantén una actitud calmada y respetuosa.
+
+</div>
+
+
+<div class="mini">
+
+<strong>🎯 Explora</strong>
+
+Identifica necesidades inmediatas.
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<strong>💬 Una intervención posible:</strong>
+
+<br><br>
+
+“Estoy aquí contigo. Tómate tu tiempo.
+¿Qué necesitas en este momento?”
+
+</div>
+
+
+<div class="avoid">
+
+<strong>🚫 Evita:</strong>
+
+presionar para que relate detalles,
+interrogar innecesariamente,
+juzgar, minimizar o decir “cálmate”.
+
+</div>
+
+
+<h3>
+¿Qué harías como psicólogo?
+</h3>
+
+<p>
+
+Una estudiante recibe una noticia familiar muy dolorosa.
+Llora y dice:
+
+<strong>“No puedo pensar, no sé qué hacer”.</strong>
+
+</p>
+
+
+<button
+class="choice"
+onclick="decision(this,true)"
+>
+
+“Estoy aquí contigo. Tómate tu tiempo.
+¿Qué necesitas en este momento?”
+
+</button>
+
+
+<button
+class="choice"
+onclick="decision(this,false)"
+>
+
+“Cálmate. Necesito que me cuentes exactamente qué pasó.”
+
+</button>
+
+
+<div
+class="feedback"
+id="fbA">
+</div>
+
+<div class="nav-actions">
+    <button onclick="nextBlock(0)">Continuar ➡</button>
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- B -->
+<!-- ========================= -->
+
+<section class="card" id="block-1">
+
+<div class="step">
+
+<div class="letter">
+B
+</div>
+
+<div>
+
+<h2>
+🌬️ Ayuda a regular la activación
+</h2>
+
+<p>
+
+Algunas personas pueden presentar respiración acelerada,
+tensión o una elevada activación fisiológica.
+
+Si no existen señales de emergencia médica,
+puedes ofrecer una estrategia breve de regulación.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<strong>Como psicólogo:</strong>
+
+<br><br>
+
+Primero pregunta si la persona desea intentarlo.
+No impongas una técnica.
+
+</div>
+
+
+<div class="breath-wrap">
+
+<div
+class="breath"
+id="breath"
+>
+
+RESPIRA
+
+</div>
+
+
+<button
+onclick="toggleBreath()"
+id="breathBtn"
+>
+
+▶ Iniciar respiración
+
+</button>
+
+
+<p
+class="muted"
+id="breathText"
+>
+
+Sigue el ritmo de expansión y contracción
+del círculo durante unos ciclos.
+
+</p>
+
+</div>
+
+
+<div class="avoid">
+
+<strong>⚠️ Recuerda:</strong>
+
+la regulación fisiológica es una herramienta de apoyo
+dentro del PAP. No reemplaza una evaluación médica
+cuando existen señales de emergencia.
+
+</div>
+
+<div class="nav-actions">
+    <button onclick="nextBlock(1)">Continuar ➡</button>
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- C -->
+<!-- ========================= -->
+
+<section class="card" id="block-2">
+
+<div class="step">
+
+<div class="letter">
+C
+</div>
+
+<div>
+
+<h2>
+🧩 Identifica y prioriza necesidades
+</h2>
+
+<p>
+
+No asumas automáticamente qué necesita la persona.
+
+Explora qué situación requiere atención primero.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="mini">
+
+<strong>🛡️ Seguridad</strong>
+
+¿Existe peligro inmediato?
+
+</div>
+
+
+<div class="mini">
+
+<strong>🏥 Atención</strong>
+
+¿Necesita atención médica?
+
+</div>
+
+
+<div class="mini">
+
+<strong>📍 Información</strong>
+
+¿Necesita saber qué ocurrirá?
+
+</div>
+
+
+<div class="mini">
+
+<strong>👨‍👩‍👧 Contacto</strong>
+
+¿Necesita localizar a alguien?
+
+</div>
+
+</div>
+
+
+<h3>
+Caso profesional
+</h3>
+
+<p>
+
+Después de un accidente, una persona está muy angustiada.
+Repite:
+
+<strong>“No sé dónde está mi hijo”.</strong>
+
+</p>
+
+
+<p>
+¿Qué debería hacer primero el psicólogo?
+</p>
+
+
+<button
+class="choice"
+onclick="decision(this,true)"
+>
+
+Explorar y priorizar su necesidad inmediata
+de información o contacto.
+
+</button>
+
+
+<button
+class="choice"
+onclick="decision(this,false)"
+>
+
+Pedirle que relate detalladamente
+cómo ocurrió el accidente.
+
+</button>
+
+
+<div
+class="feedback"
+id="fbC">
+</div>
+
+<div class="nav-actions">
+    <button onclick="nextBlock(2)">Continuar ➡</button>
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- D -->
+<!-- ========================= -->
+
+<section class="card" id="block-3">
+
+<div class="step">
+
+<div class="letter">
+D
+</div>
+
+<div>
+
+<h2>
+🤝 Deriva y conecta con apoyo
+</h2>
+
+<p>
+
+El PAP no significa resolver todos los problemas
+de la persona.
+
+Parte de la intervención consiste en conectarla
+con sus redes y con servicios especializados
+cuando corresponda.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="mini">
+
+<strong>👨‍👩‍👧 Redes</strong>
+
+Identifica personas significativas.
+
+</div>
+
+
+<div class="mini">
+
+<strong>🏥 Servicios</strong>
+
+Conecta con atención especializada.
+
+</div>
+
+
+<div class="mini">
+
+<strong>📋 Protocolos</strong>
+
+Aplica los procedimientos institucionales.
+
+</div>
+
+
+<div class="mini">
+
+<strong>🧠 Límites</strong>
+
+Reconoce cuándo PAP no es suficiente.
+
+</div>
+
+</div>
+
+
+<div class="avoid">
+
+<strong>🚨 Situaciones que requieren escalar la atención:</strong>
+
+<ul>
+
+<li>Riesgo de autolesión o suicidio.</li>
+
+<li>Peligro inmediato.</li>
+
+<li>Emergencia médica.</li>
+
+<li>Violencia o amenaza activa.</li>
+
+<li>Alteración grave del estado de conciencia.</li>
+
+<li>Situaciones que superan las competencias del interviniente.</li>
+
+</ul>
+
+</div>
+
+
+<div class="example">
+
+<strong>⚠️ Caso crítico</strong>
+
+<br><br>
+
+Si una persona expresa intención de hacerse daño,
+el psicólogo debe priorizar la seguridad y activar
+apoyo especializado o de emergencia según el contexto
+y los protocolos institucionales.
+
+</div>
+
+<div class="nav-actions">
+    <button onclick="nextBlock(3)">Continuar ➡</button>
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- E -->
+<!-- ========================= -->
+
+<section class="card" id="block-4">
+
+<div class="step">
+
+<div class="letter">
+E
+</div>
+
+<div>
+
+<h2>
+💡 Brinda información útil
+</h2>
+
+<p>
+
+La psicoeducación dentro del PAP debe ser breve,
+clara, comprensible y orientada a recursos
+y próximos pasos.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="mini">
+
+<strong>✅ Breve</strong>
+
+Entrega únicamente información necesaria.
+
+</div>
+
+
+<div class="mini">
+
+<strong>✅ Clara</strong>
+
+Utiliza un lenguaje comprensible.
+
+</div>
+
+
+<div class="mini">
+
+<strong>✅ Orientadora</strong>
+
+Indica qué puede hacer la persona después.
+
+</div>
+
+
+<div class="mini">
+
+<strong>❌ Sin diagnóstico</strong>
+
+No conviertas el PAP en una evaluación diagnóstica.
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<strong>💬 Ejemplo adecuado:</strong>
+
+<br><br>
+
+“Después de una situación como esta pueden aparecer
+diferentes reacciones de estrés. No todas las personas
+reaccionan igual. Veamos qué apoyo necesitas ahora
+y qué recursos tienes disponibles.”
+
+</div>
+
+
+<div class="avoid">
+
+<strong>🚫 Evita:</strong>
+
+<ul>
+
+<li>“Esto es definitivamente un trastorno de ansiedad”.</li>
+
+<li>“Todo estará bien”.</li>
+
+<li>“Sé exactamente cómo te vas a sentir”.</li>
+
+<li>“Debes superar esto rápidamente”.</li>
+
+</ul>
+
+</div>
+
+<div class="nav-actions">
+    <button onclick="nextBlock(4)">Continuar a la Evaluación ➡</button>
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- QUIZ / EVALUACIÓN FORMATIVA PASO A PASO -->
+<!-- ========================= -->
+
+<section
+class="card"
+id="block-5"
+>
+
+<div class="step" style="margin-bottom: 20px;">
+    <div class="letter">✓</div>
+    <div>
+        <h2>🎯 Evaluación formativa</h2>
+        <p>Analiza cada caso, toma una decisión y avanza pregunta a pregunta.</p>
+    </div>
+</div>
+
+
+<div id="quiz-container"></div>
+
+
+<div
+class="score"
+id="score">
+</div>
+
+</section>
+
+
+<div class="footer">
+    Microlearning educativo · Recurso demostrativo<br>
+    Verifica siempre los protocolos institucionales y locales aplicables.<br><br>
+    <strong>Auditoría y Autoría:</strong> Ps. Erick Sarasi Sánchez.<br>
+    <span style="font-size: 0.8rem; color: #64748B;">
+        Esta obra está bajo una licencia Creative Commons (CC BY-NC). 
+        No se puede usar para fines comerciales o de lucro. Se exige citar al autor. 
+        Para cualquier uso o adaptación fuera de estos términos, por favor contactar directamente al autor.
+    </span>
+</div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   CONTROL DE BLOQUES Y PROGRESO
+========================= */
+
+let currentBlock = 0;
+const totalBlocks = 6;
+
+const progress = document.getElementById("progress");
+
+for(let i=0; i<totalBlocks; i++){
+    const bar = document.createElement("div");
+    bar.className="bar";
+    progress.appendChild(bar);
+}
+
+function updateProgressUI() {
+    const bars = document.querySelectorAll(".bar");
+    bars.forEach((bar, j) => {
+        bar.className = "bar " + (j < currentBlock ? "done" : j === currentBlock ? "active" : "");
+    });
+}
+
+updateProgressUI();
+
+function nextBlock(currentIndex) {
+    const currentCardElement = document.getElementById(`block-${currentIndex}`);
+    currentCardElement.classList.remove("active-card");
+
+    currentBlock = currentIndex + 1;
+    if(currentBlock < totalBlocks) {
+        const nextCardElement = document.getElementById(`block-${currentBlock}`);
+        nextCardElement.classList.add("active-card");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateProgressUI();
+    }
+}
+
+
+/* =========================
+   DECISIONES (BLOQUES 1-4)
+========================= */
+
+function decision(button,correct){
+
+    const card =
+    button.closest(".card");
+
+    const feedback =
+    card.querySelector(".feedback");
+
+    card.querySelectorAll(".choice")
+        .forEach(x => x.disabled=true);
+
+    button.classList.add(
+        correct ? "correct" : "wrong"
+    );
+
+    feedback.textContent =
+    correct
+    ?
+    "✅ Correcto. La intervención prioriza presencia, escucha y necesidades inmediatas."
+    :
+    "⚠️ Revisa el principio de PAP: evita presionar, interrogar o minimizar.";
+
+    feedback.style.color =
+    correct
+    ? "var(--green)"
+    : "var(--red)";
+}
+
+
+
+/* =========================
+   RESPIRACIÓN
+========================= */
+
+let breathing=false;
+
+function toggleBreath(){
+
+    breathing=!breathing;
+
+    const circle =
+    document.getElementById("breath");
+
+    const button =
+    document.getElementById("breathBtn");
+
+    const text =
+    document.getElementById("breathText");
+
+    circle.classList.toggle(
+        "animate",
+        breathing
+    );
+
+    button.textContent =
+    breathing
+    ?
+    "⏸ Detener"
+    :
+    "▶ Iniciar respiración";
+
+    text.textContent =
+    breathing
+    ?
+    "Inhala suavemente cuando el círculo crece y exhala cuando se contrae."
+    :
+    "Sigue el ritmo de expansión y contracción del círculo durante unos ciclos.";
+}
+
+
+
+/* =========================
+   QUIZ PASO A PASO
+========================= */
+
+const questions=[
+
+{
+    personagem: "Pablo, 22 años (Estudiante universitario en Lima)",
+    gender: "male",
+    situation: "Tras enterarse de una emergencia familiar grave ocurrida en su provincia de origen, se encuentra en los exteriores de la universidad llorando de manera incontenible, con temblores leves en las manos y expresando: 'No puedo pensar, no sé qué hacer ni a dónde ir'.",
+    options: [
+        "Ofrecer presencia calmada, un espacio seguro y preguntar qué necesita en este preciso momento.",
+        "Pedirle de inmediato que se calme y exigirle que cuente todos los detalles de lo sucedido sin omitir nada.",
+        "Decirle que no es momento de llorar y que debe ser fuerte para afrontar la situación."
+    ],
+    correct: 0,
+    successText: "✅ ¡Correcto! Priorizas la escucha activa, la contención y la validación de sus necesidades inmediatas sin presionar.",
+    errorText: "❌ <strong>Incorrecto.</strong> Exigir detalles o invalidar el llanto vulnera la estabilidad emocional de Pablo y genera mayor estrés.<br><br>⚠️ <strong>Recuerda:</strong> ofrece una presencia calmada y contención. En el Paso A (Escucha activa), lo primordial es permitir que la persona se exprese sin presiones ni juicios."
+},
+
+{
+    personagem: "Lucía, 34 años (Trabajadora de oficina)",
+    gender: "female",
+    situation: "Sobreviviente de un sismo moderado en su centro de trabajo. Presenta respiración muy acelerada, tensión muscular evidente y taquicardia, descartándose previamente cualquier emergencia médica grave.",
+    options: [
+        "Obligarla a realizar un ejercicio de respiración guiada a la fuerza para que se controle rápido.",
+        "Invitarla a regular su respiración a su propio ritmo, si desea intentarlo, sin imponerle la técnica.",
+        "Decirle que ignore lo que siente porque el sismo ya pasó y no hay peligro."
+    ],
+    correct: 1,
+    successText: "✅ ¡Correcto! La regulación fisiológica en el modelo ABCDE siempre debe ser una invitación voluntaria y respetuosa.",
+    errorText: "❌ <strong>Incorrecto.</strong> Imponer técnicas o minimizar su activación incrementa su sensación de descontrol.<br><br>⚠️ <strong>Recuerda:</strong> invita a regular la respiración a su propio ritmo, si desea intentarlo, sin imponerle la técnica. Respeta la autonomía de la persona y evita imponer acciones."
+},
+
+{
+    personagem: "Carlos, 45 años (Padre de familia)",
+    gender: "male",
+    situation: "Afectado por un accidente vehicular masivo en una vía pública. Se encuentra deambulando muy angustiado y repite constantemente: 'No sé dónde está mi hijo menor, nadie me da información'.",
+    options: [
+        "Identificar y priorizar su necesidad inmediata de información y contacto, canalizándola con los equipos de respuesta.",
+        "Decirle que espere sentado en silencio hasta que los rescatistas tengan tiempo de atenderlo.",
+        "Cambiar inmediatamente de tema hablándole del clima para distraer su atención."
+    ],
+    correct: 0,
+    successText: "✅ ¡Correcto! Identificaste y priorizaste su necesidad principal de seguridad y contacto/información.",
+    errorText: "❌ <strong>Incorrecto.</strong> Aislarlo o ignorar su prioridad urgente aumenta drásticamente su desesperación.<br><br>⚠️ <strong>Recuerda:</strong> identifica y prioriza la necesidad inmediata de información y contacto. Conéctalo de inmediato con los equipos de respuesta pertinentes."
+},
+
+{
+    personagem: "Mateo, 19 años (Estudiante de instituto)",
+    gender: "male",
+    situation: "Atendido en un centro de apoyo tras una ruptura personal severa. Durante la intervención de primeros auxilios psicológicos, expresa de manera directa y explícita intenciones de autolesionarse hoy mismo.",
+    options: [
+        "Mantener una charla casual y amigable cambiando de tema para que se relaje.",
+        "Priorizar la absoluta seguridad de Mateo y activar de inmediato los protocolos institucionales de apoyo especializado y emergencia.",
+        "Prometerle estrictamente guardar el secreto cueste lo que cueste para conservar su confianza."
+    ],
+    correct: 1,
+    successText: "✅ ¡Correcto! Ante riesgo de autolesión, la prioridad inquebrantable es la seguridad y la derivación especializada.",
+    errorText: "❌ <strong>Incorrecto.</strong> Omitir protocolos o encubrir riesgos pone en peligro inminente la vida del usuario.<br><br>⚠️ <strong>Recuerda:</strong> prioriza la seguridad absoluta y activa de inmediato los protocolos de emergencia y derivación especializada."
+},
+
+{
+    personagem: "Sofía, 28 años (Madre y comerciante)",
+    gender: "female",
+    situation: "Ha atravesado un evento de violencia urbana en su barrio. Se encuentra en el módulo de salud solicitando orientación sobre cómo lidiar con el insomnio y la angustia que experimenta desde anoche.",
+    options: [
+        "Brindar psicoeducación breve y clara sobre las reacciones esperables de estrés y orientarla sobre recursos prácticos de afrontamiento.",
+        "Afirmar categóricamente y sin dudar que padece un trastorno psiquiátrico crónico severo.",
+        "Decirle que todo pasará mágicamente al día siguiente sin darle ninguna pauta útil."
+    ],
+    correct: 0,
+    successText: "✅ ¡Correcto! La psicoeducación dentro del modelo debe ser breve, comprensible y orientada a recursos de afrontamiento.",
+    errorText: "❌ <strong>Incorrecto.</strong> Diagnosticar de forma precipitada o invalidar sus dudas no corresponde a los primeros auxilios psicológicos.<br><br>⚠️ <strong>Recuerda:</strong> brinda psicoeducación breve y orientadora sobre las reacciones normales de estrés, conectándola con recursos prácticos de afrontamiento."
+}
+
+];
+
+let userScore = 0;
+let currentQuizStep = 0;
+const quizContainer = document.getElementById("quiz-container");
+
+function renderQuizStep() {
+    quizContainer.innerHTML = "";
+
+    if (currentQuizStep >= questions.length) {
+        showFinalScore();
+        return;
+    }
+
+    const q = questions[currentQuizStep];
+    const isFemale = (q.gender === 'female');
+    const avatarClass = isFemale ? "case-avatar female" : "case-avatar";
+    const avatarIcon = isFemale ? "👩" : "👤";
+
+    const stepDiv = document.createElement("div");
+    stepDiv.className = "quiz-step active-quiz";
+
+    stepDiv.innerHTML = `
+        <div class="meta-pts">Pregunta ${currentQuizStep + 1} de ${questions.length} · 60 pts</div>
+        <div class="case-box">
+            <div class="${avatarClass}">${avatarIcon}</div>
+            <div class="case-content">
+                <strong>${q.personagem}</strong><br>${q.situation}
+            </div>
+        </div>
+        <div style="font-weight:700; margin-bottom:8px; color:#173F56;">TU DECISIÓN:</div>
+    `;
+
+    q.options.forEach((option, j) => {
+        stepDiv.innerHTML += `
+        <button
+        class="choice"
+        onclick="handleQuizChoice(this, ${currentQuizStep}, ${j})"
+        >
+        ${option}
+        </button>
+        `;
+    });
+
+    stepDiv.innerHTML += `<div class="feedback" id="quiz-feedback" style="display:none;"></div>`;
+    
+    // Cambiar etiqueta del botón si es la última pregunta
+    const btnText = (currentQuizStep === questions.length - 1) ? "Ver resultados ➡" : "Siguiente pregunta ➡";
+    stepDiv.innerHTML += `<div class="nav-actions" id="next-quiz-btn" style="display:none;"><button onclick="nextQuizStep()">${btnText}</button></div>`;
+
+    quizContainer.appendChild(stepDiv);
+}
+
+function handleQuizChoice(button, qIndex, selectedOpt) {
+    const stepDiv = button.closest(".quiz-step");
+    stepDiv.querySelectorAll(".choice").forEach(x => x.disabled = true);
+
+    const isCorrect = (selectedOpt === questions[qIndex].correct);
+    button.classList.add(isCorrect ? "correct" : "wrong");
+
+    if (!isCorrect) {
+        stepDiv.querySelectorAll(".choice")[questions[qIndex].correct].classList.add("correct");
+    }
+
+    if (isCorrect) {
+        userScore += 60;
+    }
+
+    const feedbackBox = document.getElementById("quiz-feedback");
+    feedbackBox.style.display = "block";
+
+    if (isCorrect) {
+        feedbackBox.innerHTML = questions[qIndex].successText;
+        feedbackBox.style.background = "#EDF8F1";
+        feedbackBox.style.border = "1px solid #8BC7A5";
+        feedbackBox.style.color = "var(--green)";
+    } else {
+        feedbackBox.innerHTML = questions[qIndex].errorText;
+        feedbackBox.style.background = "#FFF0F0";
+        feedbackBox.style.border = "1px solid #E6A1A1";
+        feedbackBox.style.color = "var(--red)";
+    }
+
+    document.getElementById("next-quiz-btn").style.display = "flex";
+}
+
+function nextQuizStep() {
+    currentQuizStep++;
+    renderQuizStep();
+    window.scrollTo({ top: document.getElementById("block-5").offsetTop - 20, behavior: 'smooth' });
+}
+
+function showFinalScore() {
+    const scoreBox = document.getElementById("score");
+    scoreBox.classList.add("show");
+
+    let message = "";
+    let skillLevels = [60, 60, 60, 60, 60]; 
+    let recommendationsHTML = "";
+
+    if (userScore === 300) {
+        message = "¡Extraordinario! Lograste el puntaje máximo (300 pts). Demuestras un dominio sobresaliente de las habilidades PAP.";
+        skillLevels = [100, 100, 100, 100, 100];
+        recommendationsHTML = "<li>¡Excelente trabajo! Has dominado todas las áreas del modelo ABCDE sin dificultad. Mantén la práctica constante y revisa los protocolos locales ante emergencias reales.</li>";
+        triggerConfetti();
+    } else if (userScore > 150) {
+        message = "¡Felicitaciones! ¡Buen dominio de competencias de apoyo!";
+        skillLevels = [90, 85, 95, 75, 90];
+        recommendationsHTML = `
+            <li><strong>Derivación:</strong> Repasa los límites del PAP y cuándo activar redes de apoyo institucional o emergencias especializadas.</li>
+            <li><strong>Regulación:</strong> Recuerda siempre ofrecer las técnicas de forma voluntaria, evitando imponerlas.</li>
+        `;
+        triggerConfetti();
+    } else if (userScore >= 120) {
+        message = "¡Buen trabajo! Has obtenido " + userScore + " puntos. Tienes bases sólidas, repasa algunos conceptos para perfeccionar tu criterio.";
+        skillLevels = [65, 70, 60, 50, 60];
+        recommendationsHTML = `
+            <li><strong>Derivación y Seguridad:</strong> Es vital priorizar la integridad ante riesgo de autolesión o crisis graves.</li>
+            <li><strong>Escucha Activa:</strong> Evita interrogar o presionar para obtener detalles innecesarios de la historia del evento.</li>
+        `;
+    } else {
+        message = "Has obtenido " + userScore + " puntos. Conviene repasar los bloques conceptuales del protocolo ABCDE y volver a intentarlo.";
+        skillLevels = [40, 45, 35, 40, 35];
+        recommendationsHTML = `
+            <li><strong>General:</strong> Te sugerimos releer los 5 bloques del microlearning (A, B, C, D, E) antes de reiniciar.</li>
+            <li><strong>Evita invalidar:</strong> Recuerda validar las emociones y no imponer pautas rígidas a los afectados.</li>
+        `;
+    }
+
+    scoreBox.innerHTML = `
+        <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; color:#173F56;">Puntaje Final: ${userScore} / 300 pts</div>
+        <div style="margin-bottom: 15px; font-weight: 600; color: #2E8B57;">${message}</div>
+        
+        <div class="results-grid">
+            <div class="radar-container">
+                <canvas id="radarCanvas"></canvas>
+            </div>
+            <div class="recommendations-box">
+                <strong style="color: #173F56; display: block; margin-bottom: 8px;">💡 Recomendaciones de mejora:</strong>
+                <ul style="margin: 0; padding-left: 18px; font-size: 0.9rem; color: #475569;">
+                    ${recommendationsHTML}
+                </ul>
+            </div>
+        </div>
+
+        <br>
+        <button class="secondary" onclick="restart()">Inicia de nuevo el microlearning</button>
+    `;
+
+    // Renderizar gráfico con Chart.js
+    setTimeout(() => {
+        const ctx = document.getElementById('radarCanvas').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Escucha Activa', 'Regulación', 'Priorización', 'Derivación', 'Psicoeducación'],
+                datasets: [{
+                    label: 'Nivel de Habilidades PAP',
+                    data: skillLevels,
+                    backgroundColor: 'rgba(7, 200, 204, 0.2)',
+                    borderColor: '#00669E',
+                    pointBackgroundColor: '#D946EF',
+                    pointBorderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: '#D8E1E8' },
+                        grid: { color: '#D8E1E8' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { stepSize: 25, display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }, 100);
+}
+
+// Función para generar serpentinas/confeti de celebración
+function triggerConfetti() {
+    const colors = ['#00669E', '#07C8CC', '#2E8B57', '#D946EF', '#B7791F', '#C53030'];
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti-piece';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confetti.style.animationDelay = (Math.random() * 1.5) + 's';
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 4000);
+    }
+}
+
+renderQuizStep();
+
+
+/* =========================
+   REINICIAR
+========================= */
+
+function restart(){
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>
